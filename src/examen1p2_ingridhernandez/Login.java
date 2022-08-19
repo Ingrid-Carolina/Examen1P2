@@ -31,14 +31,14 @@ public class Login extends javax.swing.JFrame {
         modelo.addElement(("Rastreador"));
         Tipo_P.setModel(modelo);
 
-        DefaultComboBoxModel modelo2
+       /* DefaultComboBoxModel modelo2
                 = (DefaultComboBoxModel) Tipo_Arma_P.getModel();
         modelo2.addElement( new Armas("FlatLine",100,100));
         modelo2.addElement( new Armas("Carabina",100,100));
         modelo2.addElement( new Armas("PeaceFinder",100,100));
         Tipo_Arma_P.setModel(modelo2);
         
-       /* DefaultComboBoxModel modelo3
+       DefaultComboBoxModel modelo3
                 = (DefaultComboBoxModel) Tipo_Arma_P.getModel();
         modelo3.addElement( new Armas("FlatLine",100,100));
         modelo3.addElement( new Armas("Carabina",100,100));
@@ -224,6 +224,11 @@ public class Login extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jButton1.setText("Seleccionar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -262,6 +267,16 @@ public class Login extends javax.swing.JFrame {
         jTabbedPane1.addTab("Seleccionar", Seleccionar);
 
         jButton2.setText("Comenzar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Restantes:");
 
@@ -613,15 +628,15 @@ public class Login extends javax.swing.JFrame {
             nombre = tf_nombre.getText();
             vida = Integer.parseInt(tf_vida.getText());
             escudo= Integer.parseInt(tf_escudo.getText());
-            if(vida <=50 && vida <=100){
+            if(vida >=50 && vida <=100){
               Personajes x = new Personajes(nombre,vida,escudo,(Armas)Tipo_Arma_P.getSelectedItem());
               lista.add(x);
               DefaultComboBoxModel dc=
                     (DefaultComboBoxModel) cb_per.getModel();
                 dc.addElement(x);
-                cb_per.setModel(dc);
+                //cb_per.setModel(dc);
                 JOptionPane.showMessageDialog(this,
-                        "Contacto almacenado exitosamente");
+                        "Personaje almacenado exitosamente");
             }else {
                 JOptionPane.showMessageDialog(this,
                         "ya no hay espacio disponible");
@@ -645,15 +660,16 @@ public class Login extends javax.swing.JFrame {
         nombreA = n_arma.getText();
         dano = Integer.parseInt(n_dano.getText());
           presicion= Integer.parseInt(n_pre.getText());
-          if(presicion>=0 && presicion >=100){
-              Armas x = new Armas(nombreA,dano,presicion);
-              listaArma.add(x);
-              DefaultComboBoxModel dc=
+          if(presicion>=0 && presicion <=100){
+              Armas y = new Armas(nombreA,dano,presicion);
+              listaArma.add(y);
+              DefaultComboBoxModel modelo2=
                     (DefaultComboBoxModel) Tipo_Arma_P.getModel();
-                dc.addElement(x);
-                Tipo_Arma_P.setModel(dc);
+                modelo2.addElement(y);
+                //Tipo_Arma_P.setModel(modelo2);
+                
                 JOptionPane.showMessageDialog(this,
-                        "Contacto almacenado exitosamente");
+                        "Arma almacenada exitosamente");
             }else {
                 JOptionPane.showMessageDialog(this,
                         "ya no hay espacio disponible");
@@ -666,6 +682,25 @@ public class Login extends javax.swing.JFrame {
         }      
     
     }//GEN-LAST:event_CrearArmaMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String nombre="";
+        jTextArea1.append(nombre);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code her
+        Personajes x =(Personajes)cb_per.getSelectedItem();
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        for (Personajes personajes : lista) {
+            jTextArea1.append(personajes.toString()+"\n");
+        }
+        
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments
