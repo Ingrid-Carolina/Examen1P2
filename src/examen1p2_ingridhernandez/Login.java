@@ -5,6 +5,11 @@
  */
 package examen1p2_ingridhernandez;
 
+import java.awt.Color;
+import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author incah
@@ -34,7 +39,8 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         UserTx = new javax.swing.JTextField();
         passTx = new javax.swing.JPasswordField();
-        jLabel4 = new javax.swing.JLabel();
+        loginBtn = new javax.swing.JPanel();
+        loginBtnTx = new javax.swing.JLabel();
         Seleccionar = new javax.swing.JPanel();
         Jugar = new javax.swing.JPanel();
         Crear = new javax.swing.JPanel();
@@ -50,6 +56,7 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel3.setText("Contraseña");
 
+        UserTx.setForeground(new java.awt.Color(204, 204, 204));
         UserTx.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 UserTxMousePressed(evt);
@@ -61,15 +68,43 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        passTx.setForeground(new java.awt.Color(204, 204, 204));
+        passTx.setText("********");
         passTx.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 passTxMousePressed(evt);
             }
         });
 
-        jLabel4.setBackground(new java.awt.Color(102, 51, 255));
-        jLabel4.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
-        jLabel4.setText("INGRESAR");
+        loginBtn.setBackground(new java.awt.Color(51, 102, 255));
+
+        loginBtnTx.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        loginBtnTx.setText("INGRESAR");
+        loginBtnTx.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loginBtnTxMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                loginBtnTxMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                loginBtnTxMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout loginBtnLayout = new javax.swing.GroupLayout(loginBtn);
+        loginBtn.setLayout(loginBtnLayout);
+        loginBtnLayout.setHorizontalGroup(
+            loginBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loginBtnLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(loginBtnTx, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        loginBtnLayout.setVerticalGroup(
+            loginBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(loginBtnTx, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout LoginLayout = new javax.swing.GroupLayout(Login);
         Login.setLayout(LoginLayout);
@@ -92,8 +127,8 @@ public class Login extends javax.swing.JFrame {
                         .addGap(259, 259, 259)
                         .addComponent(jLabel3))
                     .addGroup(LoginLayout.createSequentialGroup()
-                        .addGap(246, 246, 246)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(245, 245, 245)
+                        .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(190, Short.MAX_VALUE))
         );
         LoginLayout.setVerticalGroup(
@@ -109,9 +144,9 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passTx, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(68, 68, 68)
+                .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Login", Login);
@@ -124,7 +159,7 @@ public class Login extends javax.swing.JFrame {
         );
         SeleccionarLayout.setVerticalGroup(
             SeleccionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 333, Short.MAX_VALUE)
+            .addGap(0, 357, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Seleccionar", Seleccionar);
@@ -137,7 +172,7 @@ public class Login extends javax.swing.JFrame {
         );
         JugarLayout.setVerticalGroup(
             JugarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 333, Short.MAX_VALUE)
+            .addGap(0, 357, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Jugar", Jugar);
@@ -150,7 +185,7 @@ public class Login extends javax.swing.JFrame {
         );
         CrearLayout.setVerticalGroup(
             CrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 333, Short.MAX_VALUE)
+            .addGap(0, 357, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Crear", Crear);
@@ -181,11 +216,51 @@ public class Login extends javax.swing.JFrame {
 
     private void UserTxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UserTxMousePressed
         // TODO add your handling code here:
+         if(String.valueOf (UserTx.getText()).equals("Ingrese su nombre de usuario")) {
+            UserTx.setText("");
+            UserTx.setForeground(Color.black);
+        }
+        if (String.valueOf(passTx.getPassword()).isEmpty()) {
+            passTx.setText("********");
+            passTx.setForeground(Color.gray);
+        }
     }//GEN-LAST:event_UserTxMousePressed
 
     private void passTxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passTxMousePressed
         // TODO add your handling code here:
+        if (String.valueOf(passTx.getPassword()).equals("********")) {
+            passTx.setText("");
+            passTx.setForeground(Color.black);
+        }
+        if (UserTx.getText().isEmpty()) {
+            UserTx.setText("Ingrese su nombre de usuario");
+            UserTx.setForeground(Color.gray);
+        }
     }//GEN-LAST:event_passTxMousePressed
+
+    private void loginBtnTxMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnTxMouseEntered
+        // TODO add your handling code here:
+        loginBtn.setBackground(new Color(0, 156, 223));
+    }//GEN-LAST:event_loginBtnTxMouseEntered
+
+    private void loginBtnTxMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnTxMouseExited
+     // TODO add your handling code here:
+     loginBtn.setBackground(new Color(0,134,190));   
+    }//GEN-LAST:event_loginBtnTxMouseExited
+
+    private void loginBtnTxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnTxMouseClicked
+        // TODO add your handling code here:
+        String usuario;
+        String contra;
+        try {     
+            contra = passTx.getText();
+            usuario = UserTx.getText();
+          } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this,
+                 "Ocurrio un error y no se guardaron los datos");
+        }  
+    }//GEN-LAST:event_loginBtnTxMouseClicked
 
     /**
      * @param args the command line arguments
@@ -231,8 +306,9 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JPanel loginBtn;
+    private javax.swing.JLabel loginBtnTx;
     private javax.swing.JPasswordField passTx;
     // End of variables declaration//GEN-END:variables
 }
