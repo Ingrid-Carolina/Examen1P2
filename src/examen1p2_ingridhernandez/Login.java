@@ -8,6 +8,7 @@ package examen1p2_ingridhernandez;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -22,7 +23,19 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        listaArma.add(new Armas("FlatLine",10,80));
+        listaArma.add(new Armas("Carabina",15,90));
+        listaArma.add(new Armas("Paeces Finder",30,40));
         
+        
+        lista.add(new Personajes("LifeLine",100,50,listaArma.get(0)));
+        lista.add(new Personajes("Vantage",100,50,listaArma.get(2)));
+        lista.add(new Personajes("Gibby",125,75,listaArma.get(1)));
+          
+                
+        jug.add(new Jugadores("Lechuga",543,"contrasena","LifeLine"));
+        jug.add(new Jugadores("Loco Bryan",23,"contrasena","Vantage"));
+        jug.add(new Jugadores("Dr.Nulia",2,"contrasena","Gibby"));
                 
         DefaultComboBoxModel modelo
                 = (DefaultComboBoxModel) Tipo_P.getModel();
@@ -31,14 +44,14 @@ public class Login extends javax.swing.JFrame {
         modelo.addElement(("Rastreador"));
         Tipo_P.setModel(modelo);
 
-       /* DefaultComboBoxModel modelo2
-                = (DefaultComboBoxModel) Tipo_Arma_P.getModel();
-        modelo2.addElement( new Armas("FlatLine",100,100));
-        modelo2.addElement( new Armas("Carabina",100,100));
-        modelo2.addElement( new Armas("PeaceFinder",100,100));
-        Tipo_Arma_P.setModel(modelo2);
-        
-       DefaultComboBoxModel modelo3
+       /*DefaultComboBoxModel modelo2
+                = (DefaultComboBoxModel) cb_per.getModel();
+        modelo2.addElement();
+        modelo2.addElement();
+        modelo2.addElement();
+        cb_per.setModel(modelo2);
+        */
+       /*DefaultComboBoxModel modelo3
                 = (DefaultComboBoxModel) Tipo_Arma_P.getModel();
         modelo3.addElement( new Armas("FlatLine",100,100));
         modelo3.addElement( new Armas("Carabina",100,100));
@@ -113,7 +126,6 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel3.setText("Contraseña");
 
-        UserTx.setForeground(new java.awt.Color(204, 204, 204));
         UserTx.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 UserTxMousePressed(evt);
@@ -535,6 +547,22 @@ public class Login extends javax.swing.JFrame {
 
     private void UserTxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserTxActionPerformed
         // TODO add your handling code here:
+        boolean p = true;
+        Random r = new Random();
+        for (int i = 0; i < jug.size(); i++) {
+            if(UserTx.getText().contentEquals(jug.get(i).getUsuario())){
+                jug.get(i).setUsuario(UserTx.getText());
+                p=true;
+            }else{
+                p=false;
+            }
+        }
+        //if(p=true){
+           // int id=jg.getID();
+           // String c = jg.getContra();
+           // jug.add(new Jugadores(UserTx.getText(),id,c,seleccionado.get()));
+                    
+        //}
     }//GEN-LAST:event_UserTxActionPerformed
 
     private void UserTxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UserTxMousePressed
@@ -545,7 +573,7 @@ public class Login extends javax.swing.JFrame {
         }
         if (String.valueOf(passTx.getPassword()).isEmpty()) {
             passTx.setText("********");
-            passTx.setForeground(Color.gray);
+            passTx.setForeground(Color.black);
         }
     }//GEN-LAST:event_UserTxMousePressed
 
@@ -790,7 +818,9 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField tf_vida;
     // End of variables declaration//GEN-END:variables
 ArrayList<Personajes> lista = new ArrayList();
+ArrayList<Jugadores>jug = new ArrayList();
 ArrayList<Armas> listaArma = new ArrayList();
+Jugar jg;
 Personajes seleccionado;
     int flag = 0;
 }
