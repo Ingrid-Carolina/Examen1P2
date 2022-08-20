@@ -10,5 +10,20 @@ package examen1p2_ingridhernandez;
  * @author incah
  */
 public class Medico extends Personajes{
+
+    public Medico() {
+        super();
+    }
+
+    
+    public Medico(String nombre, int vida, int escudo, Armas arma) {
+        super(nombre, vida, escudo, arma);
+    }
+
+    @Override
+    public String toString() {
+        return "Medico{" + '}';
+    }
+    
     
 }

@@ -10,5 +10,18 @@ package examen1p2_ingridhernandez;
  * @author incah
  */
 public class Fortalezas extends Personajes{
-    
+
+    public Fortalezas() {
+        super();
+    }
+
+    public Fortalezas(String nombre, int vida, int escudo, Armas arma) {
+        super(nombre, vida, escudo, arma);
+    }
+
+    @Override
+    public String toString() {
+        return "Fortalezas{" + '}';
+    }
+   
 }

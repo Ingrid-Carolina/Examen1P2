@@ -367,6 +367,12 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        Tipo_P.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Tipo_PActionPerformed(evt);
+            }
+        });
+
         tf_vida.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("######"))));
         tf_vida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -699,8 +705,12 @@ public class Login extends javax.swing.JFrame {
         for (Personajes personajes : lista) {
             jTextArea1.append(personajes.toString()+"\n");
         }
-        
+
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void Tipo_PActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tipo_PActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Tipo_PActionPerformed
 
     /**
      * @param args the command line arguments
