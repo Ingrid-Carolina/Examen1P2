@@ -44,13 +44,13 @@ public class Login extends javax.swing.JFrame {
         modelo.addElement(("Rastreador"));
         Tipo_P.setModel(modelo);
 
-       /*DefaultComboBoxModel modelo2
+       DefaultComboBoxModel modelo2
                 = (DefaultComboBoxModel) cb_per.getModel();
-        modelo2.addElement();
-        modelo2.addElement();
-        modelo2.addElement();
+        modelo2.addElement((lista.get(0)));
+        modelo2.addElement((lista.get(1)));
+        modelo2.addElement((lista.get(2)));
         cb_per.setModel(modelo2);
-        */
+        
        /*DefaultComboBoxModel modelo3
                 = (DefaultComboBoxModel) Tipo_Arma_P.getModel();
         modelo3.addElement( new Armas("FlatLine",100,100));
